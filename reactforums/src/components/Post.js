@@ -15,7 +15,7 @@ class Post extends Component{
 						<td colSpan='3'>{this.props.contents.user}</td>
 					</tr>
 					<tr>
-						<td colSpan='3' style={{ 'white-space': 'pre-wrap' }}>{this.props.contents.body}</td>
+						<td colSpan='3' style={{ 'whiteSpace': 'pre-wrap' }}>{this.props.contents.body}</td>
 					</tr>
 				</tbody>
 			</table>

@@ -9,6 +9,7 @@ class NewPost extends Component{
 		this.props.NewPost(this.state.body);
 		this.setState({ body: ''})
 	}
+	
 	state = {
 		body: ''
 	}
