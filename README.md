@@ -9,9 +9,17 @@ Create SQL user
 ```bash
 GRANT ALL PRIVILEGES ON 'reactforums_production'.* TO 'username'@'localhost' IDENTIFIED BY 'password';
 ```
+CD into frontend
+```bash
+cd ./reactforums
+```
+Install dependencies
+```bash
+npm install
+```
 CD into backend
 ```bash
-cd ./reactforumsbackend
+cd ../reactforumsbackend
 ```
 Install dependencies
 ```bash
