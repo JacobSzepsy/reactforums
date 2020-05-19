@@ -3,46 +3,56 @@ import Post from './Post.js';
 import NewPost from './NewPost.js';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class PostList extends Component{
 	state = {
-		ThreadId: this.props.match.params.threadID,
-		posts: [
-			{
-				id: 1,
-				user: 'steve',
-				body: 'this is a post',
-				date: 'today'
-			},
-			{
-				id: 2,
-				user: 'steve',
-				body: 'this is a post',
-				date: 'today'
-			},
-			{
-				id: 3,
-				user: 'steve',
-				body: 'this is a post',
-				date: 'today'
+		posts: []
+	}
+
+	//TODO: have this code in a seperate method and then have a flag so page doesn't render before content is loaded
+	componentDidMount = () => {
+		const rqst = {
+			method: 'get',
+		};
+		fetch(`/api/posts/${this.props.match.params.threadID}`, rqst)
+		.then(response => response.json())
+		.then(json => {
+			if(json.status === "GOOD"){
+				this.setState({ posts: json.data});
+			}else{
+				alert(`ERROR: ${json.message}`);
 			}
-		]
+		})
 	}
 
 	newPost = ( contents ) => {
-		const date = new Date();
-		const post = {
-			id: (this.state.posts.length + 1),
-			user: this.props.userState.username,
-			body: contents,
-			date: date.getMonth() + "-" + date.getDate() + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
+		if(Cookies.get('jwt-token') !== undefined){
+			const rqst = {
+				method: 'post',
+				body: JSON.stringify({
+					'thread': this.props.match.params.threadID,
+					'body': contents,
+					'token': Cookies.get('jwt-token')
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			};
+			fetch(`/api/posts/`, rqst)
+			.then(response => response.json())
+			.then(json => {
+				if(json.status === "GOOD"){
+					this.setState({ posts: [...this.state.posts, json.data] })
+				}else{
+					alert(`ERROR: ${json.message}`);
+				}
+			})
 		}
-		this.setState({ posts: [...this.state.posts, post] });
 	}
 	render(){
 		return(
 			<div className="container mt-4 mb-4 mw-100">
-				<h1>{this.state.ThreadId}</h1>
 				{this.state.posts.map((post) =>
 						<Post key={post.id} contents={post} />
 				)}

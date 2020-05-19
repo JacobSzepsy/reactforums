@@ -6,8 +6,9 @@ require 'jwt'
 
 		#POST api/users/validate
 		def validate
-			if tokenValidate(params[:token])[:status]
-			 	render json: {status: 'GOOD', message: 'token validated'},status: :ok
+			validated = tokenValidate(params[:token])
+			if validated[:status]
+			 	render json: {status: 'GOOD', message: 'token validated', user: validated[:username]},status: :ok
 			else
 				render json: {status: 'ERROR', message: 'invalid token'},status: :unprocessable_entity
 			end
@@ -43,7 +44,7 @@ require 'jwt'
 					payload = {user: @user[0].username, exp: Time.now.to_i + 3600}
 					#TODO: Switch this to enviornment variables
 					token = JWT.encode payload, 'SuperSecret', 'HS256'
-					render json: {status: 'Good', message: 'login succesful', token: token},status: :ok
+					render json: {status: 'GOOD', message: 'login succesful', token: token},status: :ok
 				else
 					render json: {status: 'ERROR', message: 'incorrect username or password'},status: :unprocessable_entity
 				end

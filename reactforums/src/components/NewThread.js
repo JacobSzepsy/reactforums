@@ -13,8 +13,7 @@ class NewThread extends Component{
 	
 	submitHandler = (e) => {
 		e.preventDefault();
-		alert(this.state.board);
-		//this.props.newThread(this.state);
+		this.props.newThread(this.state);
 		this.setState({ title: '', body: ''});
 	}
 
@@ -43,7 +42,7 @@ class NewThread extends Component{
 						</div>
 						
 					</div>
-					<button className="btn btn-dark" data-toggle="modal" data-target={`#${this.props.boardName}modal`}>New Thread</button>
+					<button className="btn btn-dark" data-toggle="modal" data-target={`#${this.props.boardName}modal`} data-dismiss={`#${this.props.boardName}modal`}>New Thread</button>
 				</React.Fragment>	
 			);
 		}

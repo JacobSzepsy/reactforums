@@ -18,11 +18,11 @@ class Board extends Component{
 				</thead>
 				<tbody>
 					{this.props.threads.map((thread) =>
-						<tr key={thread.threadid}>
+						<tr key={thread.id}>
 							
-							<td style={{width: '70%'}}><Link className="linkBlack" to={`/${this.props.boardName}/${thread.threadid}`}>{thread.title}</Link></td>
-							<td>{thread.poster}</td>
-							<td>{thread.date}</td>
+							<td style={{width: '70%'}}><Link className="linkBlack" to={`/${this.props.boardName}/${thread.id}`}>{thread.subject}</Link></td>
+							<td>{thread.createdBy}</td>
+							<td>{thread.created_at}</td>
 						</tr>
 					)}
 				</tbody>

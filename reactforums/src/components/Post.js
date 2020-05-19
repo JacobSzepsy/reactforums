@@ -10,7 +10,7 @@ class Post extends Component{
 				<thead className='thead-dark'>
 					<tr>
 						{/* TODO: use toLocaleTimeString() to get local time */}
-						<th scope='col' colSpan='3'>{this.props.contents.date}</th>
+						<th scope='col' colSpan='3'>{this.props.contents.created_at}</th>
 					</tr>
 				</thead>
 				<tbody>

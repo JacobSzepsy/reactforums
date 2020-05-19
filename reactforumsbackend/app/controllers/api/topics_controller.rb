@@ -11,7 +11,7 @@ module Api
 				boards[:"#{n[:name]}"] = topics
 			end
 			puts boards
-			render json: {boards: boards},status: :ok
+			render json: {status: "GOOD", boards: boards},status: :ok
 		end
 
 		def create
