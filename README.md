@@ -1,6 +1,6 @@
-#React Forums
+# React Forums
 
-##How To Run
+## How To Run
 CD into backend
 ```bash
 cd ./reactforumsbackend
