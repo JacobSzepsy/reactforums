@@ -43,6 +43,7 @@ class App extends Component {
 
   logout = () => {
     this.setState({ userState: {isLoggedIn: false, user: null, token: null}});
+    Cookies.remove('jwt-token');
   }
 
   //TODO: move these functions into the login and register page and have the state pushed back here so that redirects will only happen when the request is succesful 

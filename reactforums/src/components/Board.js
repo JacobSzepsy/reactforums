@@ -22,7 +22,7 @@ class Board extends Component{
 							
 							<td style={{width: '70%'}}><Link className="linkBlack" to={`/${this.props.boardName}/${thread.id}`}>{thread.subject}</Link></td>
 							<td>{thread.createdBy}</td>
-							<td>{thread.created_at}</td>
+							<td>{new Date(thread.created_at).toLocaleString()}</td>
 						</tr>
 					)}
 				</tbody>
