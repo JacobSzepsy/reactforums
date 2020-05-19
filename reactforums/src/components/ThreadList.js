@@ -47,13 +47,17 @@ class ThreadList extends Component {
     }
   }
   
+  newThread = (thread) => {
+    //todo: fix this
+    this.setState({boards: {...this.state.boards, [thread.board]: [...this.state.boards.thread.board, {threadid: '1234', poster: this.props.userState.username, title: thread.title}]}})
+  }
   
 
   render() {
     return (
       <React.Fragment>
-        {Object.keys(this.state.boards).map((board) =>
-          <Board key={board} boardName={board} threads={this.state.boards[board]} userState={this.props.userState}/> 
+        {Object.keys(this.state.boards).map((board) =>   
+            <Board key={board} boardName={board} threads={this.state.boards[board]} userState={this.props.userState}/> 
         )}
       </React.Fragment>
     );

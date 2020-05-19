@@ -6,6 +6,7 @@ import {withRouter} from 'react-router-dom';
 
 class PostList extends Component{
 	state = {
+		ThreadId: this.props.match.params.threadID,
 		posts: [
 			{
 				id: 1,
@@ -39,13 +40,9 @@ class PostList extends Component{
 		this.setState({ posts: [...this.state.posts, post] });
 	}
 	render(){
-		/* return this.props.posts.map((post) => (
-			<div className="container mt-4 mb-4 mw-100">
-				<Post key={post.id} contents={post} />
-			</div>
-		)); */
 		return(
 			<div className="container mt-4 mb-4 mw-100">
+				<h1>{this.state.ThreadId}</h1>
 				{this.state.posts.map((post) =>
 						<Post key={post.id} contents={post} />
 				)}
